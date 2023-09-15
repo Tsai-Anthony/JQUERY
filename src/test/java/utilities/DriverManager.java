@@ -35,4 +35,3 @@ public class DriverManager {
 		threadLocalDriver.set(null);
 	}
 }
-
