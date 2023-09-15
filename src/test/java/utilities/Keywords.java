@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Keywords {
 
 	private static WebDriverWait wait;
+	
 	public static void enterIntoIframe(WebDriver driver) {
 		driver.switchTo().frame(0);
 	}

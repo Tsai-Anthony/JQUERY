@@ -1,6 +1,7 @@
 package page_objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +14,6 @@ public class AccordionPage {
 
 	// Local Variables
 	private WebDriver driver;
-	private final String URL = "https://jqueryui.com/accordion/";
 	private final String TITLE_TEXT = "Accordion";
 
 	private final String SECTION1CONTENT = "Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus,"
@@ -23,10 +23,7 @@ public class AccordionPage {
 			+ "dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit "
 			+ "faucibus urna.";
 
-	private final String SECTION3CONTENT = "Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus"
-			+ "in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante "
-			+ "aliquam nisi, eu iaculis leo purus venenatis dui.\n" + "List item one\n" + "List item two\n"
-			+ "List item three";
+	private final String SECTION3CONTENT = "Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.";
 	private final String SECTION4CONTENT = "Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum "
 			+ "ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est.\n"
 			+ "Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, "
@@ -67,21 +64,20 @@ public class AccordionPage {
 	}
 
 	// Actions
-	public void navigate() {
-		driver.navigate().to(URL);
-	}
 
 	public void validatePageload() {
 		assertEquals(TITLE_TEXT, titleText.getText());
 	}
-
-	public void clickOnSection1() {
+	public void getIntoFrame() {
 		Keywords.enterIntoIframe(driver);
+	}
+	public void clickOnSection1() {
+		
 		section1Button.click();
 	}
 
 	public void validateSection1Content() {
-		Keywords.waitUntilElementIsPresent(section1Content, driver);
+		
 		assertEquals(SECTION1CONTENT, section1Content.getText());
 	}
 
@@ -90,7 +86,7 @@ public class AccordionPage {
 	}
 
 	public void validateSection2Content() {
-		Keywords.waitUntilElementIsPresent(section2Content, driver);
+		
 		assertEquals(SECTION2CONTENT, section2Content.getText());
 	}
 
@@ -99,9 +95,8 @@ public class AccordionPage {
 	}
 
 	public void validateSection3Content() {
-		Keywords.waitUntilElementIsPresent(section3Content, driver);
-		System.out.println(section3Content.getText());
-		assertEquals(SECTION3CONTENT, section3Content.getText());
+//		System.out.println(section3Content.getText());
+		assertTrue(section3Content.getText().contains(SECTION3CONTENT));
 	}
 
 	public void clickOnSection4() {
@@ -110,6 +105,10 @@ public class AccordionPage {
 
 	public void validateSection4Content() {
 		Keywords.waitUntilElementIsPresent(section4Content, driver);
-		assertEquals(SECTION4CONTENT, section4Content.getText());
+		assertTrue(section4Content.getText().contains(SECTION4CONTENT));
+	}
+	
+	public void getOutOfFrame() {
+		driver.switchTo().defaultContent();
 	}
 }

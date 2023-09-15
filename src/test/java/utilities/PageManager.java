@@ -3,6 +3,7 @@ package utilities;
 import org.openqa.selenium.WebDriver;
 
 import page_objects.AccordionPage;
+import page_objects.AutocompletePage;
 import page_objects.HomePage;
 
 
@@ -12,6 +13,7 @@ public class PageManager {
 	private WebDriver driver;
 	private HomePage homePage;
 	private AccordionPage accordionPage;
+	private AutocompletePage autocompletePage;
 
 	private PageManager(WebDriver driver) {
 		this.driver = driver;
@@ -47,5 +49,11 @@ public class PageManager {
 		return accordionPage;
 	}
 
-
+	public AutocompletePage autocompletePage() {
+		if(autocompletePage == null) {
+			autocompletePage = new AutocompletePage(driver);
+		}
+		return autocompletePage;
+	}
+	
 }

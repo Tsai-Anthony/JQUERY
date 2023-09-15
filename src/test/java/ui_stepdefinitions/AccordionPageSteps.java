@@ -3,16 +3,10 @@ package ui_stepdefinitions;
 import io.cucumber.java.en.*;
 import utilities.PageManager;
 
-public class AccordionPageTest {
+public class AccordionPageSteps {
 
 	private PageManager pages = PageManager.getInstance();
 	
-	@Given("user is on Jquery homepage")
-	public void user_is_on_jquery_homepage() {
-	    pages.homePage().navigate();
-	    pages.homePage().validatePageload();
-	}
-
 	@When("user click <Accordion> button")
 	public void user_click_button() {
 	    pages.homePage().clickOnAccordion();
@@ -24,6 +18,10 @@ public class AccordionPageTest {
 		pages.accordionPage().validatePageload();
 	}
 
+	@Then("user gets into the frame")
+	public void user_gets_into_the_frame() {
+	   pages.accordionPage().getIntoFrame();
+	}
 	@Then("user can click Section1 button and validate its content")
 	public void user_can_click_section1_button_and_validate_its_content() {
 	    pages.accordionPage().clickOnSection1();
