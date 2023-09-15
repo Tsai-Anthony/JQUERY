@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.interactions.Actions;
+import utilities.*;
 
 public class DraggablePage {
 
@@ -46,7 +47,7 @@ public class DraggablePage {
 	}
 
 	public void moveBox() {
-		switchToIframe();
+		Keywords.enterIntoIframe(driver);
 		// switch to iframe
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		WebElement draggableElement = wait.until(ExpectedConditions.elementToBeClickable(dragBoxInput));
@@ -56,7 +57,7 @@ public class DraggablePage {
 		actions.clickAndHold(draggableElement).moveByOffset(225, 135);
 		actions.release().perform();
 
-		switchOutofIframe();
+		Keywords.switchOutofIframe(driver);;
 		// switch back to default content
 	}
 
@@ -65,21 +66,22 @@ public class DraggablePage {
 		assertEquals(TITLE_TEXT, titleText.getText());
 	}
 
-	public void switchToIframe() {
-		driver.switchTo().frame(iframeElement);
-	}
+//	public void switchToIframe() {
+//		driver.switchTo().frame(iframeElement);
+//	}
 
-	public void switchOutofIframe() {
-		driver.switchTo().defaultContent();
-	}
+//	public void switchOutofIframe() {
+//		driver.switchTo().defaultContent();
+//}
+	
 
 	public boolean isElementAtPosition(int expectedX, int expectedY) {
-		switchToIframe(); 
+		Keywords.enterIntoIframe(driver);; 
 		// switch to the iframe
 		WebElement draggableElement = wait.until(ExpectedConditions.elementToBeClickable(dragBoxInput));
 		int currentX = draggableElement.getLocation().getX();
 		int currentY = draggableElement.getLocation().getY();
-		switchOutofIframe(); 
+		Keywords.switchOutofIframe(driver); 
 		// switch back to default content
 
 		boolean isAtPosition = (currentX == expectedX) && (currentY == expectedY);

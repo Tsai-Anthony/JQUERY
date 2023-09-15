@@ -27,9 +27,9 @@ public class Draggable {
 
 	@Then("User should click and drag the box")
 	public void user_should_click_and_drag_the_box() {
-		pages.DraggablePage().moveBox();
+		pages.DroppablePage().moveBox();
 		// this performs the action of moving the box
-		pages.DraggablePage().isElementAtPosition(233, 143);
+		pages.DraggablePage().isElementAtPosition(168, 113);
 		// validates if the box is in the correct position
 
 	}

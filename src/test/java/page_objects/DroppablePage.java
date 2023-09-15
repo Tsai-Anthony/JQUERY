@@ -11,13 +11,14 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.interactions.Actions;
+import utilities.*;
 
 public class DroppablePage {
 
 	// Local Variables
 	private WebDriver driver;
 	private WebDriverWait wait;
-	private final String URL = "https://jqueryui.com/droppable/";
+	final String URL = "https://jqueryui.com/droppable/";
 	private final String TITLE_TEXT = "Droppable";
 
 	// Elements
@@ -53,16 +54,8 @@ public class DroppablePage {
 		assertEquals(TITLE_TEXT, titleText.getText());
 	}
 
-	public void switchToIframe() {
-		driver.switchTo().frame(iframeElement);
-	}
-
-	public void switchOutofIframe() {
-		driver.switchTo().defaultContent();
-	}
-
 	public void moveBox() {
-		switchToIframe();
+		Keywords.enterIntoIframe(driver);
 		// switch to iframe
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		WebElement draggableElement = wait.until(ExpectedConditions.elementToBeClickable(dragBoxInput));
@@ -72,12 +65,12 @@ public class DroppablePage {
 		actions.clickAndHold(draggableElement).moveByOffset(160, 105);
 		actions.release().perform();
 
-		switchOutofIframe();
+		Keywords.switchOutofIframe(driver);
 		// switch back to default content
 	}
 
 	public void validateDroppedMessage() {
-		switchToIframe();
+		Keywords.enterIntoIframe(driver);
 		String actualMessage = droppedMessage.getText();
 
 		String expectedMessage = "Dropped!";
@@ -85,8 +78,7 @@ public class DroppablePage {
 		assertEquals(expectedMessage, actualMessage, "The dropped message does not match the expected message.");
 		if (actualMessage.equals(expectedMessage)) {
 			System.out.println("TEST PASSED. You dropped the box in the correct area!");
-			switchOutofIframe();
-
+			Keywords.switchOutofIframe(driver);
 		}
 	}
 }

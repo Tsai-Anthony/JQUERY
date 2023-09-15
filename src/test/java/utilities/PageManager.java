@@ -3,29 +3,41 @@ package utilities;
 import org.openqa.selenium.WebDriver;
 
 import page_objects.*;
+import page_objects.HomePage;
 
 public class PageManager {
 
-	private static PageManager pageManager = null;
+	private static ThreadLocal<PageManager> threadLocalPageManager = new ThreadLocal<>();
 	private WebDriver driver;
 
+	private HomePage homePage;
 	private jQuery jQuery;
 	private DraggablePage DraggablePage;
+	private AccordionPage accordionPage;
 	private DroppablePage DroppablePage;
+
 
 	private PageManager(WebDriver driver) {
 		this.driver = driver;
 	}
 
 	public static PageManager getInstance() {
-		if (pageManager == null) {
-			pageManager = new PageManager(DriverManager.getInstance());
+		if (threadLocalPageManager.get() == null) {
+			PageManager pageManager = new PageManager(DriverManager.getInstance());
+			threadLocalPageManager.set(pageManager);
 		}
-		return pageManager;
+		return threadLocalPageManager.get();
 	}
 
 	public static void cleanup() {
-		pageManager = null;
+		threadLocalPageManager.remove();
+	}
+
+	public HomePage homePage() {
+		if (homePage == null) {
+			homePage = new HomePage(driver);
+		}
+		return homePage;
 	}
 
 	public jQuery jQuery() {
@@ -40,6 +52,13 @@ public class PageManager {
 			DraggablePage = new DraggablePage(driver);
 		}
 		return DraggablePage;
+	}
+
+	public AccordionPage accordionPage() {
+		if (accordionPage == null) {
+			accordionPage = new AccordionPage(driver);
+		}
+		return accordionPage;
 	}
 
 	public DroppablePage DroppablePage() {
