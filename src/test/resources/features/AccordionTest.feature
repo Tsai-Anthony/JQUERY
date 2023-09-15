@@ -9,5 +9,5 @@ Feature: AccordionPage Test
     Then user is loaded on Accordion page
     And user can click Section1 button and validate its content
     And user can click Section2 button and validate its content
-    And user can click Section4 button and validate its content
     And user can click Section3 button and validate its content
+    And user can click Section4 button and validate its content

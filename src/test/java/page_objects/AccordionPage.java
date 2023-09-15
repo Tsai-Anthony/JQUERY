@@ -27,9 +27,7 @@ public class AccordionPage {
 			+ " in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante "
 			+ "aliquam nisi, eu iaculis leo purus venenatis dui.";
 	private final String SECTION4CONTENT = "Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum "
-			+ "ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est.\n"
-			+ "Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, "
-			+ "per inceptos himenaeos.";
+			+ "ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est.";
 
 	@FindBy(xpath = "//h1[@class='entry-title']")
 	private WebElement titleText;
@@ -99,7 +97,6 @@ public class AccordionPage {
 
 	public void validateSection3Content() {
 		Keywords.waitUntilElementIsPresent(section3Content, driver);
-		System.out.println(section3Content.getText());
 		assertEquals(SECTION3CONTENT, section3Content.getText());
 	}
 
@@ -109,7 +106,7 @@ public class AccordionPage {
 
 	public void validateSection4Content() {
 		Keywords.waitUntilElementIsPresent(section4Content, driver);
-		System.out.println(section4Content.getText());
+	
 		assertEquals(SECTION4CONTENT, section4Content.getText());
 	}
 }
