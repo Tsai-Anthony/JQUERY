@@ -2,7 +2,7 @@
 @tag
 Feature: AccordionPage Test
 
-  @tag1
+  @tag1 @UI
   Scenario: Testing each section and its content
     Given user is on Jquery homepage
     When user click <Accordion> button
