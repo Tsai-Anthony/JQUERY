@@ -24,7 +24,7 @@ public class AccordionPage {
 			+ "faucibus urna.";
 
 	private final String SECTION3CONTENT = "Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus"
-			+ "in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante "
+			+ " in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante "
 			+ "aliquam nisi, eu iaculis leo purus venenatis dui.";
 	private final String SECTION4CONTENT = "Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum "
 			+ "ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est.\n"
@@ -49,7 +49,7 @@ public class AccordionPage {
 	@FindBy(xpath = "//div//h3[@aria-controls='ui-id-6']")
 	private WebElement section3Button;
 
-	@FindBy(xpath = "//div[@aria-labelledby='ui-id-5']")
+	@FindBy(xpath = "//div[@aria-labelledby='ui-id-5']/p")
 	private WebElement section3Content;
 
 	@FindBy(xpath = "//div//h3[@aria-controls='ui-id-8']")
@@ -99,15 +99,9 @@ public class AccordionPage {
 
 	public void validateSection3Content() {
 		Keywords.waitUntilElementIsPresent(section3Content, driver);
-		String expectedContent = SECTION3CONTENT.replaceAll("\\s", ""); // Remove white spaces
-		String actualContent = section3Content.getText().replaceAll("\\s", ""); // Remove white spaces
-		assertEquals(expectedContent, actualContent);
+		System.out.println(section3Content.getText());
+		assertEquals(SECTION3CONTENT, section3Content.getText());
 	}
-
-//		public void validateSection3Content() {
-//			Keywords.waitUntilElementIsPresent(section3Content, driver);
-//			System.out.println(section3Content.getText());
-//			assertEquals(SECTION3CONTENT, section3Content.getText());
 
 	public void clickOnSection4() {
 		section4Button.click();
