@@ -16,8 +16,8 @@ public class AutocompletePage {
 	// Local Variables
 		private WebDriver driver;
 		private final String TITLE_TEXT = "Autocomplete";
-		private String searchLetter = "ja";
-		private String expectedTag = "Java";
+		private String searchLetter = "c";
+		private String expectedTag = "C++";
 
 		@FindBy(xpath = "//h1[@class='entry-title']")
 		private WebElement titleText;
