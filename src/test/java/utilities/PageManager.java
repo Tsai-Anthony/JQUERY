@@ -2,7 +2,11 @@ package utilities;
 
 import org.openqa.selenium.WebDriver;
 
+import page_objects.AccordionPage;
+import page_objects.AutocompletePage;
+
 import page_objects.*;
+
 import page_objects.HomePage;
 
 public class PageManager {
@@ -14,8 +18,8 @@ public class PageManager {
 	private jQuery jQuery;
 	private DraggablePage DraggablePage;
 	private AccordionPage accordionPage;
+	private AutocompletePage autocompletePage;
 	private DroppablePage DroppablePage;
-
 
 	private PageManager(WebDriver driver) {
 		this.driver = driver;
@@ -59,6 +63,13 @@ public class PageManager {
 			accordionPage = new AccordionPage(driver);
 		}
 		return accordionPage;
+	}
+
+	public AutocompletePage autocompletePage() {
+		if (autocompletePage == null) {
+			autocompletePage = new AutocompletePage(driver);
+		}
+		return autocompletePage;
 	}
 
 	public DroppablePage DroppablePage() {

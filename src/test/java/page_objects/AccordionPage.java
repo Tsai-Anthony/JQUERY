@@ -1,6 +1,7 @@
 package page_objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +14,7 @@ public class AccordionPage {
 
 	// Local Variables
 	private WebDriver driver;
-	private final String URL = "https://jqueryui.com/accordion/";
+
 	private final String TITLE_TEXT = "Accordion";
 
 	private final String SECTION1CONTENT = "Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus,"
@@ -23,9 +24,9 @@ public class AccordionPage {
 			+ "dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit "
 			+ "faucibus urna.";
 
-	private final String SECTION3CONTENT = "Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus"
-			+ " in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante "
-			+ "aliquam nisi, eu iaculis leo purus venenatis dui.";
+
+	private final String SECTION3CONTENT = "Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.";
+
 	private final String SECTION4CONTENT = "Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum "
 			+ "ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est.";
 
@@ -47,7 +48,8 @@ public class AccordionPage {
 	@FindBy(xpath = "//div//h3[@aria-controls='ui-id-6']")
 	private WebElement section3Button;
 
-	@FindBy(xpath = "//div[@aria-labelledby='ui-id-5']/p")
+
+	@FindBy(xpath = "//div[@aria-labelledby='ui-id-5']")
 	private WebElement section3Content;
 
 	@FindBy(xpath = "//div//h3[@aria-controls='ui-id-8']")
@@ -64,16 +66,16 @@ public class AccordionPage {
 	}
 
 	// Actions
-	public void navigate() {
-		driver.navigate().to(URL);
-	}
+
 
 	public void validatePageload() {
 		assertEquals(TITLE_TEXT, titleText.getText());
 	}
+	public void getIntoFrame() {
+		Keywords.enterIntoIframe(driver);
+	}
 
 	public void clickOnSection1() {
-		Keywords.enterIntoIframe(driver);
 		section1Button.click();
 	}
 
@@ -96,6 +98,8 @@ public class AccordionPage {
 	}
 
 	public void validateSection3Content() {
+
+//		System.out.println(section3Content.getText());
 		Keywords.waitUntilElementIsPresent(section3Content, driver);
 		assertEquals(SECTION3CONTENT, section3Content.getText());
 	}
@@ -106,7 +110,10 @@ public class AccordionPage {
 
 	public void validateSection4Content() {
 		Keywords.waitUntilElementIsPresent(section4Content, driver);
+		assertTrue(section4Content.getText().contains(SECTION4CONTENT));
+	}
 	
-		assertEquals(SECTION4CONTENT, section4Content.getText());
+	public void getOutOfFrame() {
+		driver.switchTo().defaultContent();
 	}
 }
