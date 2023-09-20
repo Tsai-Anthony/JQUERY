@@ -57,6 +57,9 @@ public class HomePage {
 
 	@FindBy(xpath = "//a[@href='https://jqueryui.com/tooltip/']")
 	private WebElement tooltipButton;
+	
+	@FindBy(xpath = "//a[@href='https://jqueryui.com/selectable/']")
+	private WebElement selectableButton;
 
 	// Constructor
 	public HomePage(WebDriver driver) {
@@ -128,6 +131,11 @@ public class HomePage {
 
 	public void clickOnTooltip() {
 		tooltipButton.click();
+	}
+
+	public void SelectablePage() {
+		selectableButton.click();
+		
 	}
 
 }
