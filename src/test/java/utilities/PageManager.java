@@ -20,6 +20,8 @@ public class PageManager {
 	private AccordionPage accordionPage;
 	private AutocompletePage autocompletePage;
 	private DroppablePage DroppablePage;
+	private ButtonPage buttonPage;
+	private CheckboxradioPage checkboxradioPage;
 
 	private PageManager(WebDriver driver) {
 		this.driver = driver;
@@ -77,5 +79,21 @@ public class PageManager {
 			DroppablePage = new DroppablePage(driver);
 		}
 		return DroppablePage;
+	}
+	
+	public ButtonPage buttonPage() {
+		
+		if (buttonPage == null) {
+			buttonPage = new ButtonPage(driver);
+		}
+		return buttonPage;
+	}
+	
+	public CheckboxradioPage checkboxradioPage() {
+		
+		if(checkboxradioPage == null) {
+			checkboxradioPage = new CheckboxradioPage(driver);
+		}
+		return checkboxradioPage;
 	}
 }
