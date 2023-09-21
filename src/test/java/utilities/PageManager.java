@@ -84,6 +84,6 @@ public class PageManager {
 		if (SelectablePage == null) {
 			SelectablePage = new SelectablePage(driver);
 		}
-		return SelectablePage();
+		return SelectablePage;
 	}
 }

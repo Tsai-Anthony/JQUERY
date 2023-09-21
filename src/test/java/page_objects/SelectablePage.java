@@ -41,7 +41,7 @@ public class SelectablePage {
 	@FindBy(xpath = "//li[@class='ui-widget-content ui-selectee'][6]")
 	private WebElement item6Box;
 
-	@FindBy(xpath = "//li[@class='ui-widget-content ui-selectee'][7]")
+	@FindBy(xpath = "/html/body/ol/li[7]")
 	private WebElement item7Box;
 
 	// Constructor

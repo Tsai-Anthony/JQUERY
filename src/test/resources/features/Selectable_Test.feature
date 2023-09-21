@@ -3,9 +3,10 @@ Feature: Selectable
 
   @UI
   Scenario: Clicking each Item boxes
+  
     Given user is on Jquery homepage
     When user click <Selectable> button
-    Then user goes in the the frame
+    Then user goes in to the frame
     And user can clicks Item1 button
     And user can clicks Item2 button
     And user can clicks Item3 button
