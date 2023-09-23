@@ -20,6 +20,7 @@ public class PageManager {
 	private AccordionPage accordionPage;
 	private AutocompletePage autocompletePage;
 	private DroppablePage DroppablePage;
+	private SelectMenuPage SelectMenuPage;
 
 	private PageManager(WebDriver driver) {
 		this.driver = driver;
@@ -77,5 +78,12 @@ public class PageManager {
 			DroppablePage = new DroppablePage(driver);
 		}
 		return DroppablePage;
+	}
+	
+	public SelectMenuPage SelectMenuPage() {
+		if (SelectMenuPage == null) {
+			SelectMenuPage = new SelectMenuPage(driver);
+		}
+		return SelectMenuPage;
 	}
 }
