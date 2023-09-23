@@ -21,6 +21,7 @@ public class PageManager {
 	private AutocompletePage autocompletePage;
 	private DroppablePage DroppablePage;
 	private SelectMenuPage SelectMenuPage;
+	private SpinnerPage SpinnerPage;
 
 	private PageManager(WebDriver driver) {
 		this.driver = driver;
@@ -79,11 +80,20 @@ public class PageManager {
 		}
 		return DroppablePage;
 	}
-	
+
 	public SelectMenuPage SelectMenuPage() {
 		if (SelectMenuPage == null) {
 			SelectMenuPage = new SelectMenuPage(driver);
 		}
 		return SelectMenuPage;
 	}
+
+	public SpinnerPage SpinnerPage() {
+		if (SpinnerPage == null) {
+			SpinnerPage = new SpinnerPage(driver);
+		}
+		return SpinnerPage;
+
+	}
+
 }
