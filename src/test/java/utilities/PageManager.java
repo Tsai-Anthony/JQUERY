@@ -22,6 +22,7 @@ public class PageManager {
 	private DroppablePage DroppablePage;
 	private ButtonPage buttonPage;
 	private CheckboxradioPage checkboxradioPage;
+	private ControlgroupPage controlgroupPage;
 
 	private PageManager(WebDriver driver) {
 		this.driver = driver;
@@ -95,5 +96,11 @@ public class PageManager {
 			checkboxradioPage = new CheckboxradioPage(driver);
 		}
 		return checkboxradioPage;
+	}
+	public ControlgroupPage controlgroupPage() {
+		if(controlgroupPage == null) {
+			controlgroupPage = new ControlgroupPage(driver);
+		}
+		return controlgroupPage;
 	}
 }
